@@ -40,8 +40,12 @@ public class PokerMachine {
                 if ((noOfPlayers<8)&(noOfPlayers>2)) {
                     for (int player = 1; player <= noOfPlayers; player++) {
                         Card card = deck.getCard(index++);
-                        if (card.getValue().equals("Ace") & (card.getSuit().equals("Spades"))) {
-                            throw new JokerException("Can't use Joker");
+                        try{
+                            if (card.getValue().equals("Ace") & (card.getSuit().equals("Spades"))) {
+                                throw new JokerException("Can't use Joker");
+                            }
+                        } catch (JokerException jokerException) {
+                            jokerException.printStackTrace();
                         }
                         System.out.println(String.format("Player %d gets card %s%n", player, deck.getCard(index++)));
                     }
